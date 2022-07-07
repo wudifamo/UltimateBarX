@@ -22,6 +22,8 @@ internal class MiuiRom: BaseRom() {
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun screenIndicatorOn(context: Context): Boolean {
+        val hideLine = Settings.Global.getInt(context.contentResolver, "hide_gesture_line", 0)
+        if (hideLine == 1) return false;
         val navHeight = context.navigationBarHeight
         val screenHeight = context.screenHeight
         // 当屏幕高度大于状态栏高度的 30 倍时，就认为开启了手势提示线
